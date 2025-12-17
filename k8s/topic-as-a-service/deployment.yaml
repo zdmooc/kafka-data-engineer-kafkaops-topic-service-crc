@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topic-as-a-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: topic-as-a-service
+  template:
+    metadata:
+      labels:
+        app: topic-as-a-service
+    spec:
+      containers:
+        - name: api
+          image: your-registry/topic-as-a-service:0.1.0
+          ports:
+            - containerPort: 8088
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+            - name: AUTH_MODE
+              value: "api_key"
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: topic-service-secret
+                  key: api_key
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8088
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8088
+            initialDelaySeconds: 15
+            periodSeconds: 20

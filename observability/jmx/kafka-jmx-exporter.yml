@@ -1,0 +1,18 @@
+# Example JMX exporter configuration for Kafka brokers
+# Use with: https://github.com/prometheus/jmx_exporter
+startDelaySeconds: 0
+ssl: false
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+rules:
+  - pattern: "kafka.server<type=(.+), name=(.+)PerSec\w*><>Count"
+    name: kafka_server_$1_$2_total
+    type: COUNTER
+  - pattern: "kafka.server<type=(.+), name=(.+)PerSec\w*><>OneMinuteRate"
+    name: kafka_server_$1_$2_1m_rate
+    type: GAUGE
+  - pattern: "kafka.network<type=RequestMetrics, name=RequestsPerSec, request=(.+)><>Count"
+    name: kafka_network_requests_total
+    labels:
+      request: "$1"
+    type: COUNTER

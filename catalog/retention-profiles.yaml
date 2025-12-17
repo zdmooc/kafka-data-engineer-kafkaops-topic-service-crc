@@ -1,0 +1,14 @@
+# Retention profiles (example)
+profiles:
+  short:
+    retention.ms: "3600000"          # 1h
+    cleanup.policy: "delete"
+  day:
+    retention.ms: "86400000"         # 1d
+    cleanup.policy: "delete"
+  week:
+    retention.ms: "604800000"        # 7d
+    cleanup.policy: "delete"
+  compact:
+    cleanup.policy: "compact"
+    min.cleanable.dirty.ratio: "0.2"

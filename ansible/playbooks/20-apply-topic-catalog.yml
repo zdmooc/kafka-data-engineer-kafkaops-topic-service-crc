@@ -1,0 +1,18 @@
+- name: Kafka - apply topic catalog (declarative)
+  hosts: local
+  gather_facts: false
+  vars:
+    kafka_bootstrap: "kafka:9092"
+    catalog_file: "/catalog/topics/local.yaml"
+  tasks:
+    - name: Apply catalog via kafkaops
+      ansible.builtin.shell: |
+        docker compose -f infra/docker-compose/compose.yaml exec -T topic-service           kafkaops topics apply --bootstrap "{{ kafka_bootstrap }}" -f "{{ catalog_file }}"
+      args:
+        chdir: "{{ playbook_dir }}/../.."
+      register: out
+      changed_when: "'created' in out.stdout or 'updated' in out.stdout"
+
+    - name: Show output
+      ansible.builtin.debug:
+        var: out.stdout

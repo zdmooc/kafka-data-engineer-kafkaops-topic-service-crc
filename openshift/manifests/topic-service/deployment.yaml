@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{APP_NAME}}"
+  labels:
+    app: "{{APP_NAME}}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{APP_NAME}}"
+  template:
+    metadata:
+      labels:
+        app: "{{APP_NAME}}"
+    spec:
+      containers:
+        - name: api
+          image: image-registry.openshift-image-registry.svc:5000/kafka-platform/{{APP_NAME}}:{{IMAGE_TAG}}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8088
+          envFrom:
+            - configMapRef:
+                name: topic-service-config
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: topic-service-secret
+                  key: API_KEY
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8088
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8088
+            initialDelaySeconds: 15
+            periodSeconds: 20

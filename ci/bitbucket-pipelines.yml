@@ -1,0 +1,27 @@
+image: python:3.11-slim
+
+pipelines:
+  default:
+    - step:
+        name: Lint & unit tests
+        caches:
+          - pip
+        script:
+          - cd services/topic-as-a-service
+          - python -m pip install -U pip
+          - pip install -e ".[dev]"
+          - ruff check .
+          - ruff format --check .
+          - pytest -q
+
+    - step:
+        name: Build Docker image
+        services:
+          - docker
+        script:
+          - docker build -t topic-as-a-service:ci services/topic-as-a-service
+
+definitions:
+  services:
+    docker:
+      memory: 3072

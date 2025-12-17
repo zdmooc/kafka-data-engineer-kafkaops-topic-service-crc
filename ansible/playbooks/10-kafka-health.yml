@@ -1,0 +1,17 @@
+- name: Kafka - baseline health
+  hosts: local
+  gather_facts: false
+  vars:
+    kafka_bootstrap: "kafka:9092"
+  tasks:
+    - name: Run kafkaops health (inside topic-service container)
+      ansible.builtin.shell: |
+        docker compose -f infra/docker-compose/compose.yaml exec -T topic-service           kafkaops health --bootstrap "{{ kafka_bootstrap }}"
+      args:
+        chdir: "{{ playbook_dir }}/../.."
+      register: out
+      changed_when: false
+
+    - name: Show output
+      ansible.builtin.debug:
+        var: out.stdout

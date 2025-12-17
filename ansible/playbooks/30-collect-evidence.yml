@@ -1,0 +1,44 @@
+- name: Collect evidence (snapshots)
+  hosts: local
+  gather_facts: false
+  vars:
+    kafka_bootstrap: "kafka:9092"
+    evidence_dir: "evidence"
+  tasks:
+    - name: Ensure evidence dir
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/../../{{ evidence_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Capture health
+      ansible.builtin.shell: |
+        docker compose -f infra/docker-compose/compose.yaml exec -T topic-service           kafkaops health --bootstrap "{{ kafka_bootstrap }}" --json
+      args:
+        chdir: "{{ playbook_dir }}/../.."
+      register: health
+      changed_when: false
+
+    - name: Write health json
+      ansible.builtin.copy:
+        content: "{{ health.stdout }}"
+        dest: "{{ playbook_dir }}/../../{{ evidence_dir }}/health.json"
+
+    - name: Capture topics
+      ansible.builtin.shell: |
+        docker compose -f infra/docker-compose/compose.yaml exec -T topic-service           kafkaops topics list --bootstrap "{{ kafka_bootstrap }}" --json
+      args:
+        chdir: "{{ playbook_dir }}/../.."
+      register: topics
+      changed_when: false
+
+    - name: Write topics json
+      ansible.builtin.copy:
+        content: "{{ topics.stdout }}"
+        dest: "{{ playbook_dir }}/../../{{ evidence_dir }}/topics.json"
+
+    - name: Evidence summary
+      ansible.builtin.debug:
+        msg:
+          - "Evidence written to {{ evidence_dir }}/health.json"
+          - "Evidence written to {{ evidence_dir }}/topics.json"
