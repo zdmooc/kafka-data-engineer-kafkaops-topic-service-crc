@@ -1,6 +1,6 @@
 # Kafka Expert — conservation intégrale confirmée (20 octobre 2026)
 
-**Statut : 30/30 ORIGINAL_BLOBS_EXACT / MERGED_MAIN / PENDING_OWNER_MANUAL_DELETE**
+**Statut : 30/30 ORIGINAL_BLOBS_EXACT / MERGED_MAIN / SOURCE_DELETED_BY_OWNER_VERIFIED_404_2026-10-20**
 
 ## Provenance et intégrité
 
@@ -23,6 +23,6 @@ Le transfert binaire a été réalisé directement entre deux clones GitHub au s
 
 ## Décision relative à l'ancien dépôt
 
-Le dépôt `kafka-expert` est maintenant **candidat à la suppression manuelle par son propriétaire** : son contenu `master` est intégralement préservé dans la cible. Le propriétaire doit cependant accepter la **perte de l'historique Git autonome**, des éventuels tags, tickets, artefacts de release et paramètres de l'ancien dépôt, qui ne sont pas transférés.
+Le propriétaire a **supprimé manuellement le dépôt `kafka-expert` le 20 octobre 2026**. Le contrôle GitHub `get_repo` a renvoyé **404**, et l'inventaire du portefeuille est passé à **73 dépôts dont 5 archivés**. Les **30/30 fichiers d'origine** sont toujours présents sur `main` du dépôt canonique, avec les empreintes SHA et modes identiques, dont le PNG de 293 873 octets. L'historique Git autonome, les éventuels tags, tickets, artefacts de release et paramètres de l'ancien dépôt n'ont pas été transférés.
 
-**Aucune suppression n'a été effectuée.** Ne pas présenter les fichiers et manifestes archivés comme une validation runtime : aucun broker Kafka, service Topic-as-a-Service, Ansible, environnement CRC ou système Elastic/OpenSearch n'a été exécuté ou vérifié pendant cette consolidation.
+**Aucune suppression n'a été effectuée par l'assistant : le propriétaire a supprimé la source.** Ne pas présenter les fichiers et manifestes archivés comme une validation runtime : aucun broker Kafka, service Topic-as-a-Service, Ansible, environnement CRC ou système Elastic/OpenSearch n'a été exécuté ou vérifié pendant cette consolidation.
