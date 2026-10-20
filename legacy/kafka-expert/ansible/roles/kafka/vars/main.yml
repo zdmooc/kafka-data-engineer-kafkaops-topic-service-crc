@@ -1,0 +1,25 @@
+---
+# Variables de production pour le cluster Kafka
+# Ces variables surchargent les valeurs par défaut (defaults/main.yml)
+
+kafka_version: "3.7.0"
+kafka_scala_version: "2.13"
+
+# Dimensionnement JVM (Production)
+kafka_heap_opts: "-Xmx6G -Xms6G"
+kafka_jmx_opts: >-
+  -Dcom.sun.management.jmxremote
+  -Dcom.sun.management.jmxremote.authenticate=false
+  -Dcom.sun.management.jmxremote.ssl=false
+  -Dcom.sun.management.jmxremote.port=9999
+  -javaagent:/opt/kafka/libs/jmx_prometheus_javaagent.jar=7071:/opt/kafka/config/jmx_exporter.yml
+
+# Réplication (Production)
+kafka_num_partitions: 6
+kafka_offsets_topic_replication_factor: 3
+kafka_transaction_state_log_replication_factor: 3
+kafka_transaction_state_log_min_isr: 2
+
+# Rétention (Production)
+kafka_log_retention_hours: 168
+kafka_log_segment_bytes: 1073741824

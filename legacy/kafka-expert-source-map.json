@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "source_repository": "zdmooc/kafka-expert",
+  "source_branch": "master",
+  "source_commit": "2e41ea86a53e2bc544b4f1b7644717307dd07da1",
+  "source_tree": "19f243b96736aee8774804de9b1f93a130b98c82",
+  "target_repository": "zdmooc/kafka-data-engineer-kafkaops-topic-service-crc",
+  "source_archived": true,
+  "source_history_preserved": false,
+  "original_total": 30,
+  "exact_copied": 29,
+  "still_missing": [
+    {
+      "source": "architecture/hld_diagram.png",
+      "sha": "3b10458dd20368598016355ac17a1179a78d5d76",
+      "size": 293873,
+      "reason": "GitHub connector UTF8 decoder rejects binary PNG"
+    }
+  ],
+  "deletion_status": "DELETION_BLOCKED_UNTIL_PNG_BINARY_SHA_VERIFIED",
+  "files": [
+    {
+      "source": ".gitignore",
+      "target": "legacy/kafka-expert/.gitignore",
+      "sha": "7be6ffefb428f402f2350d011cb6a873d4e13d3a",
+      "mode": "100644",
+      "size": 208,
+      "preserved": true
+    },
+    {
+      "source": "README.md",
+      "target": "legacy/kafka-expert/README.md",
+      "sha": "def46f4ef7a56ce9d50337dbc29e4fcc744f1e16",
+      "mode": "100644",
+      "size": 2828,
+      "preserved": true
+    },
+    {
+      "source": "ansible/README.md",
+      "target": "legacy/kafka-expert/ansible/README.md",
+      "sha": "474de8dadcf154f6bd33e80b2d0fe8d0ca06e530",
+      "mode": "100644",
+      "size": 1326,
+      "preserved": true
+    },
+    {
+      "source": "ansible/inventories/production.yml",
+      "target": "legacy/kafka-expert/ansible/inventories/production.yml",
+      "sha": "8f8f805fd25946436af82cedb8ec6fa6eb7fd107",
+      "mode": "100644",
+      "size": 1969,
+      "preserved": true
+    },
+    {
+      "source": "ansible/playbooks/deploy_kafka.yml",
+      "target": "legacy/kafka-expert/ansible/playbooks/deploy_kafka.yml",
+      "sha": "6d5f36d845b763f7614be98ad8a417208027d29a",
+      "mode": "100644",
+      "size": 352,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/defaults/main.yml",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/defaults/main.yml",
+      "sha": "da1d9f3fa552da75b4c50dcbc837b26c7d1f4da6",
+      "mode": "100644",
+      "size": 1246,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/handlers/main.yml",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/handlers/main.yml",
+      "sha": "85d194dd8f755d97efd7d8b0fa1064f3575cc615",
+      "mode": "100644",
+      "size": 97,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/tasks/main.yml",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/tasks/main.yml",
+      "sha": "30bf1517cba64fa203d33e09ab58c8351ade4b55",
+      "mode": "100644",
+      "size": 2218,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/templates/kafka.service.j2",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/templates/kafka.service.j2",
+      "sha": "9cf30f10da55fc6f898b6ee194899f08d18ce317",
+      "mode": "100644",
+      "size": 531,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/templates/server.properties.j2",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/templates/server.properties.j2",
+      "sha": "71d00dc7732fb2d6afd1869e66d124a86287c991",
+      "mode": "100644",
+      "size": 4645,
+      "preserved": true
+    },
+    {
+      "source": "ansible/roles/kafka/vars/main.yml",
+      "target": "legacy/kafka-expert/ansible/roles/kafka/vars/main.yml",
+      "sha": "23e450b18e7b19ea5627a97d389d44b755c07308",
+      "mode": "100644",
+      "size": 811,
+      "preserved": true
+    },
+    {
+      "source": "architecture/DDL_Kafka.md",
+      "target": "legacy/kafka-expert/architecture/DDL_Kafka.md",
+      "sha": "715f2cc41706392e1afc2caed4100881c6246c4d",
+      "mode": "100644",
+      "size": 7510,
+      "preserved": true
+    },
+    {
+      "source": "architecture/HLD_Kafka.md",
+      "target": "legacy/kafka-expert/architecture/HLD_Kafka.md",
+      "sha": "ec51d8bf2c7affeacb5c7e8cf7428f5d5aaca010",
+      "mode": "100644",
+      "size": 5975,
+      "preserved": true
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "legacy/kafka-expert/architecture/README.md",
+      "sha": "0e743045e91f9b04b55dd2c8f79e4652cc6186f4",
+      "mode": "100644",
+      "size": 721,
+      "preserved": true
+    },
+    {
+      "source": "architecture/hld_diagram.mmd",
+      "target": "legacy/kafka-expert/architecture/hld_diagram.mmd",
+      "sha": "e66737ad20de34c22c3c6f01481b69442f1cefd8",
+      "mode": "100644",
+      "size": 1565,
+      "preserved": true
+    },
+    {
+      "source": "architecture/hld_diagram.png",
+      "target": "legacy/kafka-expert/architecture/hld_diagram.png",
+      "sha": "3b10458dd20368598016355ac17a1179a78d5d76",
+      "mode": "100644",
+      "size": 293873,
+      "preserved": false
+    },
+    {
+      "source": "docs/README.md",
+      "target": "legacy/kafka-expert/docs/README.md",
+      "sha": "2fe3ed7c0a74cf46cb2499d933101167df675974",
+      "mode": "100644",
+      "size": 508,
+      "preserved": true
+    },
+    {
+      "source": "docs/Runbook_MCO_Kafka.md",
+      "target": "legacy/kafka-expert/docs/Runbook_MCO_Kafka.md",
+      "sha": "bb35ab69e30d499b21385ab2bf1e0dfde3683d9e",
+      "mode": "100644",
+      "size": 7539,
+      "preserved": true
+    },
+    {
+      "source": "docs/Topic_As_A_Service.md",
+      "target": "legacy/kafka-expert/docs/Topic_As_A_Service.md",
+      "sha": "aa0ef180687be8bfc90372accf66f9ede36cd363",
+      "mode": "100644",
+      "size": 5765,
+      "preserved": true
+    },
+    {
+      "source": "elastic_stack/README.md",
+      "target": "legacy/kafka-expert/elastic_stack/README.md",
+      "sha": "2e1fab3e6b809be102d68881ab1661e06b3675e1",
+      "mode": "100644",
+      "size": 826,
+      "preserved": true
+    },
+    {
+      "source": "elastic_stack/filebeat/filebeat.yml",
+      "target": "legacy/kafka-expert/elastic_stack/filebeat/filebeat.yml",
+      "sha": "894b5ade54c9d3cba0e69c8adc04c4ca429e10e7",
+      "mode": "100644",
+      "size": 1927,
+      "preserved": true
+    },
+    {
+      "source": "elastic_stack/logstash/kafka-to-opensearch.conf",
+      "target": "legacy/kafka-expert/elastic_stack/logstash/kafka-to-opensearch.conf",
+      "sha": "c03a0d75264ef3c3291b8773acb54dc874617d4d",
+      "mode": "100644",
+      "size": 3041,
+      "preserved": true
+    },
+    {
+      "source": "python/README.md",
+      "target": "legacy/kafka-expert/python/README.md",
+      "sha": "e0ecf72fed883f4484572e0a27a2759bd463279d",
+      "mode": "100644",
+      "size": 1190,
+      "preserved": true
+    },
+    {
+      "source": "python/api/topic_as_a_service.py",
+      "target": "legacy/kafka-expert/python/api/topic_as_a_service.py",
+      "sha": "f76517c43d4675401936c226920cbd50949dcdea",
+      "mode": "100644",
+      "size": 3139,
+      "preserved": true
+    },
+    {
+      "source": "python/consumers/basic_consumer.py",
+      "target": "legacy/kafka-expert/python/consumers/basic_consumer.py",
+      "sha": "bcc1f7ec6b3e768c22c3fb5d107100f1ecf1407b",
+      "mode": "100644",
+      "size": 1984,
+      "preserved": true
+    },
+    {
+      "source": "python/producers/basic_producer.py",
+      "target": "legacy/kafka-expert/python/producers/basic_producer.py",
+      "sha": "5b071dd0855bc3639f9ae2e86924461acbfc0fb9",
+      "mode": "100644",
+      "size": 2472,
+      "preserved": true
+    },
+    {
+      "source": "python/requirements.txt",
+      "target": "legacy/kafka-expert/python/requirements.txt",
+      "sha": "87337b21e33bbd8838f7ce7950f3f444468492f4",
+      "mode": "100644",
+      "size": 86,
+      "preserved": true
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "legacy/kafka-expert/scripts/README.md",
+      "sha": "cc206eee189e7c45f0dc5de18d13d427f7dd41ed",
+      "mode": "100644",
+      "size": 772,
+      "preserved": true
+    },
+    {
+      "source": "scripts/kafka_healthcheck.sh",
+      "target": "legacy/kafka-expert/scripts/kafka_healthcheck.sh",
+      "sha": "bf449c0a846350ef52fda7a23487af26e239f64d",
+      "mode": "100755",
+      "size": 3154,
+      "preserved": true
+    },
+    {
+      "source": "scripts/kafka_rolling_restart.sh",
+      "target": "legacy/kafka-expert/scripts/kafka_rolling_restart.sh",
+      "sha": "73938bb91aacf9afe4d7da78c53a0bcbe914c488",
+      "mode": "100755",
+      "size": 2994,
+      "preserved": true
+    }
+  ]
+}
