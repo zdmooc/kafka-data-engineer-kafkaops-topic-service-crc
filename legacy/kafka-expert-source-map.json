@@ -9,16 +9,9 @@
   "source_archived": true,
   "source_history_preserved": false,
   "original_total": 30,
-  "exact_copied": 29,
-  "still_missing": [
-    {
-      "source": "architecture/hld_diagram.png",
-      "sha": "3b10458dd20368598016355ac17a1179a78d5d76",
-      "size": 293873,
-      "reason": "GitHub connector UTF8 decoder rejects binary PNG"
-    }
-  ],
-  "deletion_status": "DELETION_BLOCKED_UNTIL_PNG_BINARY_SHA_VERIFIED",
+  "exact_copied": 30,
+  "still_missing": [],
+  "deletion_status": "ALL_30_BLOBS_PRESERVED_PENDING_MAIN_VERIFICATION",
   "files": [
     {
       "source": ".gitignore",
@@ -146,7 +139,7 @@
       "sha": "3b10458dd20368598016355ac17a1179a78d5d76",
       "mode": "100644",
       "size": 293873,
-      "preserved": false
+      "preserved": true
     },
     {
       "source": "docs/README.md",
