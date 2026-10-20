@@ -11,7 +11,7 @@
   "original_total": 30,
   "exact_copied": 30,
   "still_missing": [],
-  "deletion_status": "ALL_30_SOURCE_BLOBS_VERIFIED_ON_MAIN_PENDING_OWNER_MANUAL_DELETE",
+  "deletion_status": "SOURCE_DELETED_BY_OWNER_VERIFIED_404_2026-10-20",
   "files": [
     {
       "source": ".gitignore",
@@ -264,5 +264,15 @@
     "verified_original_modes": true,
     "runtime_claim": "NO_KAFKA_RUNTIME_VERIFIED",
     "historic_git_history_preserved": false
+  },
+  "source_deleted_on": "2026-10-20",
+  "source_deletion_evidence": "GitHub get_repo returned 404; absent from user inventory of 73 repositories with 5 archived",
+  "post_deletion_main_verification": {
+    "expected": 30,
+    "exact": 30,
+    "missing": 0,
+    "sha_mismatch": 0,
+    "modes_identical": true,
+    "png_sha": "3b10458dd20368598016355ac17a1179a78d5d76"
   }
 }
