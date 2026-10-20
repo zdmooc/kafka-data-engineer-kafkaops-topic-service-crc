@@ -1,0 +1,51 @@
+---
+all:
+  children:
+    kafka_cluster:
+      children:
+        kafka_controllers:
+          hosts:
+            controller1.example.com:
+              kafka_node_id: 1
+              kafka_process_roles: "controller"
+            controller2.example.com:
+              kafka_node_id: 2
+              kafka_process_roles: "controller"
+            controller3.example.com:
+              kafka_node_id: 3
+              kafka_process_roles: "controller"
+        kafka_brokers:
+          hosts:
+            broker1.example.com:
+              kafka_node_id: 101
+              kafka_process_roles: "broker"
+              kafka_listeners: "PLAINTEXT://:9092,SSL://:9093"
+              kafka_advertised_listeners: "PLAINTEXT://broker1.example.com:9092,SSL://broker1.example.com:9093"
+            broker2.example.com:
+              kafka_node_id: 102
+              kafka_process_roles: "broker"
+              kafka_listeners: "PLAINTEXT://:9092,SSL://:9093"
+              kafka_advertised_listeners: "PLAINTEXT://broker2.example.com:9092,SSL://broker2.example.com:9093"
+            broker3.example.com:
+              kafka_node_id: 103
+              kafka_process_roles: "broker"
+              kafka_listeners: "PLAINTEXT://:9092,SSL://:9093"
+              kafka_advertised_listeners: "PLAINTEXT://broker3.example.com:9092,SSL://broker3.example.com:9093"
+      vars:
+        kafka_controller_quorum_voters: "1@controller1.example.com:9095,2@controller2.example.com:9095,3@controller3.example.com:9095"
+        kafka_listener_security_protocol_map: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL"
+
+    elastic_stack:
+      children:
+        elasticsearch:
+          hosts:
+            es1.example.com:
+            es2.example.com:
+            es3.example.com:
+        logstash:
+          hosts:
+            logstash1.example.com:
+            logstash2.example.com:
+        kibana:
+          hosts:
+            kibana1.example.com:

@@ -1,0 +1,17 @@
+---
+- name: Deploy Apache Kafka Cluster (KRaft Mode)
+  hosts: kafka_cluster
+  become: yes
+  vars_files:
+    - ../roles/kafka/vars/main.yml
+
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+
+  roles:
+    - role: kafka
+      tags: ['kafka', 'deploy']

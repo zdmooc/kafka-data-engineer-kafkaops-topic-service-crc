@@ -124,3 +124,7 @@ Artifacts:
 - Package Topic-as-a-Service as Helm chart + GitOps (Argo CD)
 - Add SLO-based alerting (Prometheus + Alertmanager) for Kafka KPIs
 
+
+## Historical Kafka Expert archive — 20/10/2026
+
+The archived [Kafka Expert](legacy/kafka-expert/README.md) has been migrated **partially** under `legacy/kafka-expert/`: **29/30 source files byte-for-byte identical**, with two executable shell modes retained. The original binary `architecture/hld_diagram.png` is **not yet preserved**, because the connector cannot read its 294 KB PNG. See the [manifest](legacy/kafka-expert-source-map.json) and [migration status](legacy/KAFKA_EXPERT_2026-10-20.md). **Do not delete the original `kafka-expert` repository.** No Kafka runtime is verified by this migration.

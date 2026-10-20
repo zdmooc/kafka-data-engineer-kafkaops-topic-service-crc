@@ -1,0 +1,87 @@
+---
+# tasks file for kafka role
+
+- name: Ensure Java is installed
+  apt:
+    name: "{{ java_package }}"
+    state: present
+
+- name: Create Kafka user
+  user:
+    name: "{{ kafka_user }}"
+    system: yes
+    shell: /bin/false
+    home: "{{ kafka_home }}"
+
+- name: Create Kafka directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: '0755'
+  loop:
+    - "{{ kafka_home }}"
+    - "{{ kafka_data_dir }}"
+    - "{{ kafka_log_dir }}"
+    - "{{ kafka_conf_dir }}"
+
+- name: Download Kafka binary
+  get_url:
+    url: "{{ kafka_download_url }}"
+    dest: "/tmp/kafka_{{ kafka_scala_version }}-{{ kafka_version }}.tgz"
+    mode: '0644'
+  register: download_kafka
+
+- name: Extract Kafka archive
+  unarchive:
+    src: "/tmp/kafka_{{ kafka_scala_version }}-{{ kafka_version }}.tgz"
+    dest: "{{ kafka_home }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+  when: download_kafka.changed
+
+- name: Generate KRaft Cluster ID (only on first controller if not defined)
+  shell: "{{ kafka_home }}/bin/kafka-storage.sh random-uuid"
+  register: kraft_cluster_id_gen
+  run_once: true
+  when: kafka_cluster_id is not defined
+
+- name: Set KRaft Cluster ID
+  set_fact:
+    kafka_cluster_id: "{{ kraft_cluster_id_gen.stdout }}"
+  when: kafka_cluster_id is not defined
+
+- name: Configure server.properties (KRaft)
+  template:
+    src: server.properties.j2
+    dest: "{{ kafka_conf_dir }}/server.properties"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: '0640'
+  notify: Restart Kafka
+
+- name: Format KRaft Storage (if meta.properties doesn't exist)
+  shell: >
+    {{ kafka_home }}/bin/kafka-storage.sh format
+    -t {{ kafka_cluster_id }}
+    -c {{ kafka_conf_dir }}/server.properties
+  args:
+    creates: "{{ kafka_data_dir }}/meta.properties"
+  become_user: "{{ kafka_user }}"
+
+- name: Create Kafka systemd service
+  template:
+    src: kafka.service.j2
+    dest: /etc/systemd/system/kafka.service
+    mode: '0644'
+  notify: Restart Kafka
+
+- name: Start and enable Kafka service
+  systemd:
+    name: kafka
+    state: started
+    enabled: yes
+    daemon_reload: yes

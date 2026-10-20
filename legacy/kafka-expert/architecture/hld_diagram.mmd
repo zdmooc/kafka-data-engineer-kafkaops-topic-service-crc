@@ -1,0 +1,56 @@
+graph TD
+    subgraph Sources de Données
+        WWW["Plateforme WWW (Python Producers)"]
+        Apps["Applications Métiers (Java/NodeJS)"]
+        Beats["Filebeat/Metricbeat (Serveurs)"]
+    end
+
+    subgraph Cluster Apache Kafka KRaft
+        direction TB
+        subgraph Quorum Controllers
+            C1[Controller 1]
+            C2[Controller 2]
+            C3[Controller 3]
+        end
+        subgraph Brokers
+            B1[Broker 1]
+            B2[Broker 2]
+            B3[Broker 3]
+        end
+        C1 -.- C2
+        C2 -.- C3
+        B1 <--> B2
+        B2 <--> B3
+    end
+
+    subgraph Consommateurs et Traitement
+        Logstash["Logstash Cluster (Indexation/Filtrage)"]
+        PythonCons["Python Consumers (Topic As A Service)"]
+    end
+
+    subgraph Stockage et Analyse
+        OS["OpenSearch / Elasticsearch Cluster"]
+        Kibana["Kibana / OpenSearch Dashboards"]
+    end
+
+    WWW -->|JSON Events| B1
+    Apps -->|Messages| B2
+    Beats -->|Logs/Metrics| B3
+
+    B1 -->|Consommation| Logstash
+    B2 -->|Consommation| PythonCons
+    B3 -->|Consommation| Logstash
+
+    Logstash -->|Indexation| OS
+    PythonCons -->|Traitement| OS
+    OS --- Kibana
+
+    classDef kafka fill:#f96,stroke:#333,stroke-width:2px;
+    classDef source fill:#add8e6,stroke:#333,stroke-width:2px;
+    classDef consumer fill:#90ee90,stroke:#333,stroke-width:2px;
+    classDef storage fill:#ffcccb,stroke:#333,stroke-width:2px;
+
+    class B1,B2,B3,C1,C2,C3 kafka;
+    class WWW,Apps,Beats source;
+    class Logstash,PythonCons consumer;
+    class OS,Kibana storage;

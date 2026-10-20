@@ -1,0 +1,33 @@
+---
+kafka_version: "3.7.0"
+kafka_scala_version: "2.13"
+kafka_download_url: "https://downloads.apache.org/kafka/{{ kafka_version }}/kafka_{{ kafka_scala_version }}-{{ kafka_version }}.tgz"
+
+java_package: "openjdk-17-jdk-headless"
+
+kafka_user: "kafka"
+kafka_group: "kafka"
+
+kafka_home: "/opt/kafka"
+kafka_data_dir: "/var/lib/kafka/data"
+kafka_log_dir: "/var/log/kafka"
+kafka_conf_dir: "{{ kafka_home }}/config/kraft"
+
+kafka_heap_opts: "-Xmx4G -Xms4G"
+kafka_jmx_opts: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9999"
+
+# KRaft settings
+kafka_process_roles: "broker,controller"
+kafka_node_id: 1
+kafka_controller_quorum_voters: "1@localhost:9093"
+kafka_listeners: "PLAINTEXT://:9092,CONTROLLER://:9093"
+kafka_advertised_listeners: "PLAINTEXT://localhost:9092"
+kafka_listener_security_protocol_map: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL"
+
+# Log retention
+kafka_num_partitions: 3
+kafka_offsets_topic_replication_factor: 1
+kafka_transaction_state_log_replication_factor: 1
+kafka_transaction_state_log_min_isr: 1
+kafka_log_retention_hours: 168
+kafka_log_segment_bytes: 1073741824
