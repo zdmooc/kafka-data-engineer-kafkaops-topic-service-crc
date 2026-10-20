@@ -11,7 +11,7 @@
   "original_total": 30,
   "exact_copied": 30,
   "still_missing": [],
-  "deletion_status": "ALL_30_BLOBS_PRESERVED_PENDING_MAIN_VERIFICATION",
+  "deletion_status": "ALL_30_SOURCE_BLOBS_VERIFIED_ON_MAIN_PENDING_OWNER_MANUAL_DELETE",
   "files": [
     {
       "source": ".gitignore",
@@ -253,5 +253,16 @@
       "size": 2994,
       "preserved": true
     }
-  ]
+  ],
+  "main_verification_date": "2026-10-20",
+  "final_integrity": {
+    "status": "SOURCE_BLOBS_30_OF_30_EXACT",
+    "source_commit": "2e41ea86a53e2bc544b4f1b7644717307dd07da1",
+    "workflow_run": "https://github.com/zdmooc/kafka-data-engineer-kafkaops-topic-service-crc/actions/runs/39484111012",
+    "merge_pr": "https://github.com/zdmooc/kafka-data-engineer-kafkaops-topic-service-crc/pull/2",
+    "merge_sha": "baa6ca4036102871cde2bdc030869f927ebe21cb",
+    "verified_original_modes": true,
+    "runtime_claim": "NO_KAFKA_RUNTIME_VERIFIED",
+    "historic_git_history_preserved": false
+  }
 }
